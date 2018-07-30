@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GenDateTools" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCore.DataInterface\DotNetCore.DataInterface.csproj" />
+    <ProjectReference Include="..\DotNetCore.Data\DotNetCore.Data.csproj" />
+    <ProjectReference Include="..\DotNetCore.Domain\DotNetCore.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
