@@ -101,7 +101,7 @@ namespace DotNetCore.Data.Repositories
             return GetListPaged(where, param, string.Empty, pageNumber, rowsPerPage);
         }
 
-        public virtual IEnumerable<TEntity> GetListPaged(string where, object param, string orderBy, int pageNumber, int rowsPerPage)
+        public virtual IEnumerable<TEntity> GetListPaged(string where, object param, string orderBy, int pageNumber = 1, int rowsPerPage = 20)
         {
             if (pageNumber < 1 || rowsPerPage < 1)
                 throw new ArgumentOutOfRangeException("Arguments pageNumber and rowsPerPage must be greater than 0");

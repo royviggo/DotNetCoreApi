@@ -7,5 +7,6 @@ namespace DotNetCore.Application.Interfaces
     {
         PersonDTO GetById(int id);
         IEnumerable<PersonDTO> GetAll();
+        IEnumerable<PersonDTO> FindByName(string name);
     }
 }

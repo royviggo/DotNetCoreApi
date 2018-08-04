@@ -32,7 +32,16 @@ namespace DotNetCore.Data.Repositories
         {
             var sql = GetBaseQuery().Where("FirstName like @Name OR Patronym like @Name OR LastName like @Name");
 
-            return Db.Context().Query<Person>(sql, param: new { Name = name + "%" }, transaction: DbTransaction);
+            return GetListSql(sql, param: new { Name = name + "%" });
+        }
+
+        public IEnumerable<Person> FindByName(string name, int pageNumber, int rowsPerPage)
+        {
+            var sql = GetBaseQuery()
+                        .Where("FirstName like @Name OR Patronym like @Name OR LastName like @Name")
+                        .Paging(Db.PagingTemplate(pageNumber, rowsPerPage));
+
+            return GetListSql(sql, param: new { Name = name + "%" });
         }
 
         public override string GetBaseQuery()

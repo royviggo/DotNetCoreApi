@@ -41,8 +41,7 @@ namespace DotNetCore.WebApi
 
             app.UseHttpsRedirection();
             app.UseMvc();
-
-
+            
         }
     }
 }

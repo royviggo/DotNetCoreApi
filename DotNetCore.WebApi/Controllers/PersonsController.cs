@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace DotNetCore.WebApi.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : ControllerBase
@@ -16,18 +17,25 @@ namespace DotNetCore.WebApi.Controllers
             _personService = personService;
         }
 
-        // GET api/person
+        // GET api/persons
         [HttpGet]
         public IEnumerable<PersonDTO> Get()
         {
             return _personService.GetAll();
         }
 
-        // GET api/person/1
-        [HttpGet("{id}")]
-        public ActionResult<PersonDTO> Get(int id)
+        // GET api/persons/1
+        [HttpGet("{id:int}")]
+        public PersonDTO Get(int id)
         {
             return _personService.GetById(id);
+        }
+
+        // GET api/persons/name
+        [HttpGet("{name:alpha}")]
+        public IEnumerable<PersonDTO> Get(string name)
+        {
+            return _personService.FindByName(name);
         }
 
     }

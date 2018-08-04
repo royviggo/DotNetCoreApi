@@ -1,5 +1,4 @@
-﻿using DotNetCore.Domain.Entities;
-using DotNetCore.DataInterface;
+﻿using DotNetCore.DataInterface;
 using DotNetCore.Application.Interfaces;
 using DotNetCore.Application.Utils;
 using DotNetCore.Application.Model;
@@ -33,6 +32,16 @@ namespace DotNetCore.Application.Services
             using (_unitOfWork)
             {
                 var persons = _unitOfWork.Persons.GetAll();
+
+                return PersonMapper.MapPersonListToPersonDto(persons);
+            }
+        }
+
+        public IEnumerable<PersonDTO> FindByName(string name)
+        {
+            using (_unitOfWork)
+            {
+                var persons = _unitOfWork.Persons.FindByName(name);
 
                 return PersonMapper.MapPersonListToPersonDto(persons);
             }
