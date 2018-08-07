@@ -26,9 +26,13 @@ namespace DotNetCore.WebApi.Controllers
 
         // GET api/persons/1
         [HttpGet("{id:int}")]
-        public PersonDTO Get(int id)
+        public ActionResult<PersonDTO> Get(int id)
         {
-            return _personService.GetById(id);
+            var person = _personService.GetById(id);
+            if (person == null)
+                return NotFound();
+
+            return Ok(person);
         }
 
         // GET api/persons/name
