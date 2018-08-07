@@ -25,7 +25,7 @@ namespace DotNetCore.WebApi.Controllers
         }
 
         // GET api/persons/1
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "GetById")]
         public ActionResult<PersonDTO> Get(int id)
         {
             var person = _personService.GetById(id);
@@ -49,7 +49,7 @@ namespace DotNetCore.WebApi.Controllers
             var result = _personService.Add(person);
             person.Id = result;
 
-            return CreatedAtAction(nameof(Post), person);
+            return CreatedAtRoute("GetById", new { id = person.Id }, person);
         }
 
         // PUT api/persons
