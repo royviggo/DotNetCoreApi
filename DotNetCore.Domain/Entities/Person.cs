@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using DotNetCore.Domain.Enums;
-//using Dapper.Contrib.Extensions;
+using Dapper.Contrib.Extensions;
 
 namespace DotNetCore.Domain.Entities
 {
@@ -22,7 +22,7 @@ namespace DotNetCore.Domain.Entities
 
         public Status Status { get; set; }
 
-        //[Computed]
+        [Computed]
         public ICollection<Event> Events { get; set; } = new List<Event>();
     }
 }

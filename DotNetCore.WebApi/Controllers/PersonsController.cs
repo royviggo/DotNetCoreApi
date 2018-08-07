@@ -38,5 +38,36 @@ namespace DotNetCore.WebApi.Controllers
             return _personService.FindByName(name);
         }
 
+        // POST api/persons
+        [HttpPost]
+        public IActionResult Post(PersonDTO person)
+        {
+            var result = _personService.Add(person);
+            person.Id = result;
+
+            return CreatedAtAction(nameof(Post), person);
+        }
+
+        // PUT api/persons
+        [HttpPut]
+        public IActionResult Put(PersonDTO person)
+        {
+            var result = _personService.Update(person);
+            if (result)
+                return NoContent();
+            else
+                return NotFound();
+        }
+
+        // DELETE api/persons/1
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            var result = _personService.Remove(id);
+            if (result)
+                return NoContent();
+            else
+                return NotFound();
+        }
     }
 }

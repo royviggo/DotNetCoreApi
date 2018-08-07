@@ -46,5 +46,53 @@ namespace DotNetCore.Application.Services
                 return PersonMapper.MapPersonListToPersonDto(persons);
             }
         }
+
+        public int Add(PersonDTO person)
+        {
+            using (_unitOfWork)
+            {
+                var result = _unitOfWork.Persons.Add(PersonMapper.MapPersonDtoToPerson(person));
+                _unitOfWork.Save();
+
+                return result;
+            }
+        }
+
+        public bool Update(PersonDTO person)
+        {
+            using (_unitOfWork)
+            {
+                var result = _unitOfWork.Persons.Update(PersonMapper.MapPersonDtoToPerson(person));
+                _unitOfWork.Save();
+
+                return result;
+            }
+        }
+
+        public bool Remove(PersonDTO person)
+        {
+            using (_unitOfWork)
+            {
+                var result = _unitOfWork.Persons.Remove(PersonMapper.MapPersonDtoToPerson(person));
+                _unitOfWork.Save();
+
+                return result;
+            }
+        }
+
+        public bool Remove(int personId)
+        {
+            using (_unitOfWork)
+            {
+                var person = _unitOfWork.Persons.Get(personId);
+                if (person == null)
+                    return false;
+
+                var result = _unitOfWork.Persons.Remove(person);
+                _unitOfWork.Save();
+
+                return result;
+            }
+        }
     }
 }
