@@ -21,9 +21,9 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var person = _unitOfWork.Places.Get(id);
+                var place = _unitOfWork.Places.Get(id);
 
-                return PlaceMapper.MapPlaceToPlaceDto(person);
+                return PlaceMapper.MapPlaceToPlaceDto(place);
             }
         }
 
@@ -31,9 +31,9 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var persons = _unitOfWork.Places.GetAll();
+                var places = _unitOfWork.Places.GetAll();
 
-                return PlaceMapper.MapPlaceListToPlaceDTO(persons);
+                return PlaceMapper.MapPlaceListToPlaceDTO(places);
             }
         }
 
@@ -41,54 +41,54 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var persons = _unitOfWork.Places.FindByName(name);
+                var places = _unitOfWork.Places.FindByName(name);
 
-                return PlaceMapper.MapPlaceListToPlaceDTO(persons);
+                return PlaceMapper.MapPlaceListToPlaceDTO(places);
             }
         }
 
-        public int Add(PlaceDTO person)
+        public int Add(PlaceDTO place)
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Add(PlaceMapper.MapPlaceDtoToPlace(person));
+                var result = _unitOfWork.Places.Add(PlaceMapper.MapPlaceDtoToPlace(place));
                 _unitOfWork.Save();
 
                 return result;
             }
         }
 
-        public bool Update(PlaceDTO person)
+        public bool Update(PlaceDTO place)
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Update(PlaceMapper.MapPlaceDtoToPlace(person));
+                var result = _unitOfWork.Places.Update(PlaceMapper.MapPlaceDtoToPlace(place));
                 _unitOfWork.Save();
 
                 return result;
             }
         }
 
-        public bool Remove(PlaceDTO person)
+        public bool Remove(PlaceDTO place)
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Remove(PlaceMapper.MapPlaceDtoToPlace(person));
+                var result = _unitOfWork.Places.Remove(PlaceMapper.MapPlaceDtoToPlace(place));
                 _unitOfWork.Save();
 
                 return result;
             }
         }
 
-        public bool Remove(int personId)
+        public bool Remove(int placeId)
         {
             using (_unitOfWork)
             {
-                var person = _unitOfWork.Places.Get(personId);
-                if (person == null)
+                var place = _unitOfWork.Places.Get(placeId);
+                if (place == null)
                     return false;
 
-                var result = _unitOfWork.Places.Remove(person);
+                var result = _unitOfWork.Places.Remove(place);
                 _unitOfWork.Save();
 
                 return result;
