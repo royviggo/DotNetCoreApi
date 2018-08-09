@@ -35,7 +35,7 @@ namespace DotNetCore.WebApi.Controllers
             return Ok(eventType);
         }
 
-        // POST api/eventTypes
+        // POST api/eventtypes
         [HttpPost]
         public IActionResult Post(EventTypeDTO eventType)
         {
