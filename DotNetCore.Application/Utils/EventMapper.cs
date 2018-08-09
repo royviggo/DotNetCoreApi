@@ -12,8 +12,11 @@ namespace DotNetCore.Application.Utils
             {
                 Id = evnt.Id,
                 EventTypeId = evnt.EventTypeId,
+                EventType = EventTypeMapper.MapEventTypeToEventTypeDto(evnt.EventType),
                 PersonId = evnt.PersonId,
+                Person = PersonMapper.MapPersonToPersonDto(evnt.Person),
                 PlaceId = evnt.PlaceId,
+                Place = PlaceMapper.MapPlaceToPlaceDto(evnt.Place),
                 Date = evnt.Date,
                 Description = evnt.Description,
                 CreatedDate = evnt.CreatedDate,

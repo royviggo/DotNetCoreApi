@@ -120,10 +120,11 @@ namespace DotNetCore.Data.Repositories
 
         public override IEnumerable<Event> GetListSql(string query, object param)
         {
-            return Db.Context().Query<EventData, EventType, Place, Event, Event>(query, (ed, et, p, e) =>
+            return Db.Context().Query<EventData, EventType, Person, Place, Event, Event>(query, (ed, et, pe, pl, e) =>
             {
                 e.EventType = et;
-                e.Place = p;
+                e.Person = pe;
+                e.Place = pl;
                 e.Date = new GenDate(ed.Date_DateString);
                 return e;
             }, param: param, transaction: DbTransaction);
@@ -132,14 +133,14 @@ namespace DotNetCore.Data.Repositories
         public override string GetBaseQuery()
         {
             return @"
-                SELECT e.Id, e.EventTypeId, e.PersonId, e.PlaceId,
-                       e.Date_DateString,
-                       e.Description, e.CreatedDate, e.ModifiedDate,
+                SELECT e.Id, e.EventTypeId, e.PersonId, e.PlaceId, e.Date_DateString, e.Description, e.CreatedDate, e.ModifiedDate,
                        et.Id, et.IsFamilyEvent, et.Name, et.GedcomTag, et.UseDate, et.UsePlace, et.UseDescription, et.Sentence, et.CreatedDate, et.ModifiedDate,
-                       p.Id, p.Name, p.CreatedDate, p.ModifiedDate,
+                       pe.Id, pe.FirstName, pe.FatherName, pe.Patronym, pe.LastName, pe.Gender, pe.Status,
+                       pl.Id, pl.Name, pl.CreatedDate, pl.ModifiedDate,
                        e.Id, e.EventTypeId, e.PersonId, e.PlaceId, e.Description, e.CreatedDate, e.ModifiedDate
                 FROM Events e
                 INNER JOIN EventTypes et ON e.EventTypeId = et.Id
+¨               INNER JOIN Persons pe on e.PersonId = pe.Id
                 INNER JOIN Places p ON e.PlaceId = p.Id
                 ";
         }
