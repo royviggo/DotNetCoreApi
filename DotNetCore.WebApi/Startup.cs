@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DotNetCore.Data.Database;
+using Microsoft.Extensions.Hosting;
 
 namespace DotNetCore.WebApi
 {
@@ -21,16 +22,15 @@ namespace DotNetCore.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllers();
 
-            var dbFactory = new SqliteDbFactory(Configuration.GetConnectionString("DotNetCoreDatabase"));
+            using var dbFactory = new SqliteDbFactory(Configuration.GetConnectionString("DotNetCoreDatabase"));
             services.AddTransient<IPersonService>(f => new PersonService(new UnitOfWork(dbFactory)));
             services.AddTransient<IPlaceService>(f => new PlaceService(new UnitOfWork(dbFactory)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -42,8 +42,13 @@ namespace DotNetCore.WebApi
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
-            
+            app.UseRouting();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

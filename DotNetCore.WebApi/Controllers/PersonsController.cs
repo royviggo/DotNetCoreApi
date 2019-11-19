@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using DotNetCore.Application.Interfaces;
 using System.Collections.Generic;
+using System.Net.Mime;
 
 namespace DotNetCore.WebApi.Controllers
 {
-    [Produces("application/json")]
+    [Produces(MediaTypeNames.Application.Json)]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonsController : ControllerBase
