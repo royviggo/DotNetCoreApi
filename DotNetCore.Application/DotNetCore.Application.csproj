@@ -9,9 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetCore.DataInterface\DotNetCore.DataInterface.csproj" />
     <ProjectReference Include="..\DotNetCore.Data\DotNetCore.Data.csproj" />
-    <ProjectReference Include="..\DotNetCore.Domain\DotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

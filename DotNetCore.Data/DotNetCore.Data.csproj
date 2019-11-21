@@ -11,9 +11,4 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DotNetCore.DataInterface\DotNetCore.DataInterface.csproj" />
-    <ProjectReference Include="..\DotNetCore.Domain\DotNetCore.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net.Mime;
 using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Model;
+using DotNetCore.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore.WebApi.Controllers

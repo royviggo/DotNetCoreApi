@@ -1,7 +1,7 @@
-﻿using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Data
+namespace DotNetCore.Data.Interfaces
 {
     public interface IPersonRepository : IGenericRepository<Person>
     {

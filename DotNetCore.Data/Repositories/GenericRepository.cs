@@ -1,6 +1,6 @@
 ﻿using DotNetCore.Data.Interfaces;
 using DotNetCore.Data.Utils;
-using DotNetCore.DataInterface;
+using DotNetCore.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -1,7 +1,7 @@
-﻿using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Data.Entities;
 using System;
 
-namespace DotNetCore.Data
+namespace DotNetCore.Data.Interfaces
 {
     public interface IEventTypeRepository : IGenericRepository<EventType>, IDisposable
     {

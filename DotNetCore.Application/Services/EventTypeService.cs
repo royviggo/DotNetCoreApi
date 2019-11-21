@@ -1,7 +1,7 @@
 ﻿using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Model;
-using DotNetCore.Application.Utils;
-using DotNetCore.DataInterface;
+using DotNetCore.Application.Mappers;
+using DotNetCore.Application.Models;
+using DotNetCore.Data.Interfaces;
 using System.Collections.Generic;
 
 namespace DotNetCore.Application.Services
@@ -23,7 +23,7 @@ namespace DotNetCore.Application.Services
             {
                 var eventType = _unitOfWork.EventTypes.Get(id);
 
-                return EventTypeMapper.MapEventTypeToEventTypeDto(eventType);
+                return eventType?.ToEventTypeDto();
             }
         }
 
@@ -33,7 +33,7 @@ namespace DotNetCore.Application.Services
             {
                 var eventTypes = _unitOfWork.EventTypes.GetAll();
 
-                return EventTypeMapper.MapEventTypeListToEventTypeDTO(eventTypes);
+                return eventTypes?.ToEventTypeDTO();
             }
         }
 
@@ -41,7 +41,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.EventTypes.Add(EventTypeMapper.MapEventTypeDtoToEventType(eventType));
+                var result = _unitOfWork.EventTypes.Add(eventType.ToEventType());
                 _unitOfWork.Save();
 
                 return result;
@@ -52,7 +52,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.EventTypes.Update(EventTypeMapper.MapEventTypeDtoToEventType(eventType));
+                var result = _unitOfWork.EventTypes.Update(eventType.ToEventType());
                 _unitOfWork.Save();
 
                 return result;
@@ -63,7 +63,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.EventTypes.Remove(EventTypeMapper.MapEventTypeDtoToEventType(eventType));
+                var result = _unitOfWork.EventTypes.Remove(eventType.ToEventType());
                 _unitOfWork.Save();
 
                 return result;

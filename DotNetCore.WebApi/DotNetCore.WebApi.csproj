@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotNetCore.Application\DotNetCore.Application.csproj" />
-    <ProjectReference Include="..\DotNetCore.DataInterface\DotNetCore.DataInterface.csproj" />
-    <ProjectReference Include="..\DotNetCore.Domain\DotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

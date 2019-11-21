@@ -1,4 +1,4 @@
-﻿using DotNetCore.Application.Model;
+﻿using DotNetCore.Application.Models;
 using GenDateTools;
 using System.Collections.Generic;
 

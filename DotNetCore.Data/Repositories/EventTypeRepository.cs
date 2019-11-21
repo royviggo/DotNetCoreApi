@@ -1,5 +1,5 @@
-﻿using DotNetCore.Domain.Entities;
-using DotNetCore.DataInterface;
+﻿using DotNetCore.Data.Entities;
+using DotNetCore.Data;
 using DotNetCore.Data.Interfaces;
 using System.Data;
 

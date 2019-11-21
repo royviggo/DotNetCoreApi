@@ -1,12 +1,11 @@
-﻿using DotNetCore.Domain.Enums;
-using System;
+﻿using System.Collections.Generic;
+using DotNetCore.Data.Enums;
+using Dapper.Contrib.Extensions;
 
-namespace DotNetCore.Application.Model
+namespace DotNetCore.Data.Entities
 {
-    public class PersonDTO
+    public class Person : Entity
     {
-        public int Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string FatherName { get; set; }
@@ -23,8 +22,7 @@ namespace DotNetCore.Application.Model
 
         public Status Status { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
-
-        public DateTime? ModifiedDate { get; set; }
+        [Computed]
+        public ICollection<Event> Events { get; set; } = new List<Event>();
     }
 }

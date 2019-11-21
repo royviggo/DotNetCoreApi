@@ -1,10 +1,10 @@
-﻿using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Data.Entities;
 using DotNetCore.Data.Utils;
 using GenDateTools;
 using System;
 using System.Collections.Generic;
 
-namespace DotNetCore.Data
+namespace DotNetCore.Data.Interfaces
 {
     public interface IEventRepository : IGenericRepository<Event>, IDisposable
     {

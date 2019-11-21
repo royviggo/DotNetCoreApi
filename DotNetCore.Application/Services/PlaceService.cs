@@ -1,7 +1,7 @@
 ﻿using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Model;
-using DotNetCore.Application.Utils;
-using DotNetCore.DataInterface;
+using DotNetCore.Application.Mappers;
+using DotNetCore.Application.Models;
+using DotNetCore.Data.Interfaces;
 using System.Collections.Generic;
 
 namespace DotNetCore.Application.Services
@@ -23,7 +23,7 @@ namespace DotNetCore.Application.Services
             {
                 var place = _unitOfWork.Places.Get(id);
 
-                return PlaceMapper.MapPlaceToPlaceDto(place);
+                return place?.ToPlaceDto();
             }
         }
 
@@ -33,7 +33,7 @@ namespace DotNetCore.Application.Services
             {
                 var places = _unitOfWork.Places.GetAll();
 
-                return PlaceMapper.MapPlaceListToPlaceDTO(places);
+                return places?.ToPlaceDTO();
             }
         }
 
@@ -43,15 +43,17 @@ namespace DotNetCore.Application.Services
             {
                 var places = _unitOfWork.Places.FindByName(name);
 
-                return PlaceMapper.MapPlaceListToPlaceDTO(places);
+                return places?.ToPlaceDTO();
             }
         }
 
         public int Add(PlaceDTO place)
         {
+            if (place == null) throw new System.ArgumentNullException(nameof(place));
+
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Add(PlaceMapper.MapPlaceDtoToPlace(place));
+                var result = _unitOfWork.Places.Add(place.ToPlace());
                 _unitOfWork.Save();
 
                 return result;
@@ -60,9 +62,11 @@ namespace DotNetCore.Application.Services
 
         public bool Update(PlaceDTO place)
         {
+            if (place == null) throw new System.ArgumentNullException(nameof(place));
+
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Update(PlaceMapper.MapPlaceDtoToPlace(place));
+                var result = _unitOfWork.Places.Update(place.ToPlace());
                 _unitOfWork.Save();
 
                 return result;
@@ -71,9 +75,11 @@ namespace DotNetCore.Application.Services
 
         public bool Remove(PlaceDTO place)
         {
+            if (place == null) throw new System.ArgumentNullException(nameof(place));
+
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Places.Remove(PlaceMapper.MapPlaceDtoToPlace(place));
+                var result = _unitOfWork.Places.Remove(place.ToPlace());
                 _unitOfWork.Save();
 
                 return result;

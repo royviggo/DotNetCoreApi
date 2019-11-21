@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotNetCore.Data
+namespace DotNetCore.Data.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

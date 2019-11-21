@@ -1,6 +1,5 @@
 ﻿using DotNetCore.Data.Interfaces;
 using DotNetCore.Data.Repositories;
-using DotNetCore.DataInterface;
 using System;
 using System.Data;
 

@@ -1,22 +1,22 @@
-﻿using DotNetCore.Application.Model;
-using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Application.Models;
+using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Utils
+namespace DotNetCore.Application.Mappers
 {
-    public class EventMapper
+    public static class EventMapper
     {
-        public static EventDTO MapEventToEventDto(Event evnt)
+        public static EventDTO ToEventDto(this Event evnt)
         {
             return new EventDTO
             {
                 Id = evnt.Id,
                 EventTypeId = evnt.EventTypeId,
-                EventType = EventTypeMapper.MapEventTypeToEventTypeDto(evnt.EventType),
+                EventType = evnt.EventType?.ToEventTypeDto(),
                 PersonId = evnt.PersonId,
-                Person = PersonMapper.MapPersonToPersonDto(evnt.Person),
+                Person = evnt.Person?.ToPersonDto(),
                 PlaceId = evnt.PlaceId,
-                Place = PlaceMapper.MapPlaceToPlaceDto(evnt.Place),
+                Place = evnt.Place.ToPlaceDto(),
                 Date = evnt.Date,
                 Description = evnt.Description,
                 CreatedDate = evnt.CreatedDate,
@@ -24,17 +24,17 @@ namespace DotNetCore.Application.Utils
             };
         }
 
-        public static IEnumerable<EventDTO> MapEventListToEventDTO(IEnumerable<Event> events)
+        public static IEnumerable<EventDTO> ToEventDTO(this IEnumerable<Event> events)
         {
             var eventDtos = new List<EventDTO>();
 
             foreach (var evnt in events)
-                eventDtos.Add(MapEventToEventDto(evnt));
+                eventDtos.Add(evnt.ToEventDto());
 
             return eventDtos;
         }
 
-        public static Event MapEventDtoToEvent(EventDTO evnt)
+        public static Event ToEvent(this EventDTO evnt)
         {
             return new Event
 

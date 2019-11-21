@@ -27,6 +27,8 @@ namespace DotNetCore.WebApi
             using var dbFactory = new SqliteDbFactory(Configuration.GetConnectionString("DotNetCoreDatabase"));
             services.AddTransient<IPersonService>(f => new PersonService(new UnitOfWork(dbFactory)));
             services.AddTransient<IPlaceService>(f => new PlaceService(new UnitOfWork(dbFactory)));
+            services.AddTransient<IEventService>(f => new EventService(new UnitOfWork(dbFactory)));
+            services.AddTransient<IEventTypeService>(f => new EventTypeService(new UnitOfWork(dbFactory)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

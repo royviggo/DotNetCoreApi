@@ -1,4 +1,4 @@
-﻿using DotNetCore.Application.Model;
+﻿using DotNetCore.Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using DotNetCore.Application.Interfaces;
 using System.Collections.Generic;

@@ -1,12 +1,12 @@
-﻿using DotNetCore.Application.Model;
-using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Application.Models;
+using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Utils
+namespace DotNetCore.Application.Mappers
 {
-    public class PlaceMapper
+    public static class PlaceMapper
     {
-        public static PlaceDTO MapPlaceToPlaceDto(Place place)
+        public static PlaceDTO ToPlaceDto(this Place place)
         {
             return new PlaceDTO
             {
@@ -17,17 +17,17 @@ namespace DotNetCore.Application.Utils
             };
         }
 
-        public static IEnumerable<PlaceDTO> MapPlaceListToPlaceDTO(IEnumerable<Place> places)
+        public static IEnumerable<PlaceDTO> ToPlaceDTO(this IEnumerable<Place> places)
         {
             var placeDtos = new List<PlaceDTO>();
 
             foreach (var place in places)
-                placeDtos.Add(MapPlaceToPlaceDto(place));
+                placeDtos.Add(place.ToPlaceDto());
 
             return placeDtos;
         }
 
-        public static Place MapPlaceDtoToPlace(PlaceDTO place)
+        public static Place ToPlace(this PlaceDTO place)
         {
             return new Place
             {

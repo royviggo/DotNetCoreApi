@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotNetCore.Data
+namespace DotNetCore.Data.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity : class, IDisposable, new()
     {

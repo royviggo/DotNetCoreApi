@@ -1,12 +1,12 @@
-﻿using DotNetCore.Application.Model;
-using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Application.Models;
+using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Utils
+namespace DotNetCore.Application.Mappers
 {
-    public class EventTypeMapper
+    public static class EventTypeMapper
     {
-        public static EventTypeDTO MapEventTypeToEventTypeDto(EventType eventType)
+        public static EventTypeDTO ToEventTypeDto(this EventType eventType)
         {
             return new EventTypeDTO
             {
@@ -23,17 +23,17 @@ namespace DotNetCore.Application.Utils
             };
         }
 
-        public static IEnumerable<EventTypeDTO> MapEventTypeListToEventTypeDTO(IEnumerable<EventType> eventType)
+        public static IEnumerable<EventTypeDTO> ToEventTypeDTO(this IEnumerable<EventType> eventType)
         {
             var eventTypeDtos = new List<EventTypeDTO>();
 
             foreach (var place in eventType)
-                eventTypeDtos.Add(MapEventTypeToEventTypeDto(place));
+                eventTypeDtos.Add(ToEventTypeDto(place));
 
             return eventTypeDtos;
         }
 
-        public static EventType MapEventTypeDtoToEventType(EventTypeDTO eventType)
+        public static EventType ToEventType(this EventTypeDTO eventType)
         {
             return new EventType
             {

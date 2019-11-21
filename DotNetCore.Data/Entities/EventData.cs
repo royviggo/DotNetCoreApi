@@ -1,5 +1,4 @@
 ﻿using Dapper.Contrib.Extensions;
-using DotNetCore.Domain.Entities;
 
 namespace DotNetCore.Data.Entities
 {

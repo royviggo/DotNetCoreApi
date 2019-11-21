@@ -1,7 +1,7 @@
 ﻿using GenDateTools;
 using System;
 
-namespace DotNetCore.Application.Model
+namespace DotNetCore.Application.Models
 {
     public class EventDTO
     {

@@ -1,9 +1,6 @@
 ﻿using DotNetCore.Data.Entities;
-using DotNetCore.Domain.Entities;
-using DotNetCore.DataInterface;
-using DotNetCore.DataInterface.Utils;
-using DotNetCore.Data.Interfaces;
 using DotNetCore.Data.Utils;
+using DotNetCore.Data.Interfaces;
 using GenDateTools;
 using System.Collections.Generic;
 using System.Data;
@@ -140,8 +137,8 @@ namespace DotNetCore.Data.Repositories
                        e.Id, e.EventTypeId, e.PersonId, e.PlaceId, e.Description, e.CreatedDate, e.ModifiedDate
                 FROM Events e
                 INNER JOIN EventTypes et ON e.EventTypeId = et.Id
-¨               INNER JOIN Persons pe on e.PersonId = pe.Id
-                INNER JOIN Places p ON e.PlaceId = p.Id
+                INNER JOIN Persons pe on e.PersonId = pe.Id
+                INNER JOIN Places pl ON e.PlaceId = pl.Id
                 ";
         }
 

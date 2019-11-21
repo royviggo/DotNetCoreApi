@@ -1,7 +1,7 @@
 ﻿using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Model;
-using DotNetCore.Application.Utils;
-using DotNetCore.DataInterface;
+using DotNetCore.Application.Mappers;
+using DotNetCore.Application.Models;
+using DotNetCore.Data.Interfaces;
 using GenDateTools;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace DotNetCore.Application.Services
             {
                 var evnt = _unitOfWork.Events.Get(id);
 
-                return EventMapper.MapEventToEventDto(evnt);
+                return evnt?.ToEventDto();
             }
         }
 
@@ -34,7 +34,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetAll();
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -44,7 +44,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByPerson(id);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -54,7 +54,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByPerson(ids);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -64,7 +64,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByDate(date);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -74,7 +74,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByEventTypeAndDate(eventTypeId, date);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -84,7 +84,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByEventTypeAndDate(eventTypeIds, date);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -94,7 +94,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByPlace(placeId);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -104,7 +104,7 @@ namespace DotNetCore.Application.Services
             {
                 var events = _unitOfWork.Events.GetByPlace(placeIds);
 
-                return EventMapper.MapEventListToEventDTO(events);
+                return events?.ToEventDTO();
             }
         }
 
@@ -112,7 +112,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Events.Add(EventMapper.MapEventDtoToEvent(evnt));
+                var result = _unitOfWork.Events.Add(evnt.ToEvent());
                 _unitOfWork.Save();
 
                 return result;
@@ -123,7 +123,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Events.Update(EventMapper.MapEventDtoToEvent(evnt));
+                var result = _unitOfWork.Events.Update(evnt.ToEvent());
                 _unitOfWork.Save();
 
                 return result;
@@ -134,7 +134,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Events.Remove(EventMapper.MapEventDtoToEvent(evnt));
+                var result = _unitOfWork.Events.Remove(evnt.ToEvent());
                 _unitOfWork.Save();
 
                 return result;

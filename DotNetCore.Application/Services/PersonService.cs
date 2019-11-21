@@ -1,7 +1,7 @@
-﻿using DotNetCore.DataInterface;
+﻿using DotNetCore.Data.Interfaces;
 using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Utils;
-using DotNetCore.Application.Model;
+using DotNetCore.Application.Mappers;
+using DotNetCore.Application.Models;
 using System.Collections.Generic;
 
 namespace DotNetCore.Application.Services
@@ -23,7 +23,7 @@ namespace DotNetCore.Application.Services
             {
                 var person = _unitOfWork.Persons.Get(id);
 
-                return PersonMapper.MapPersonToPersonDto(person);
+                return person?.ToPersonDto();
             }
         }
 
@@ -33,7 +33,7 @@ namespace DotNetCore.Application.Services
             {
                 var persons = _unitOfWork.Persons.GetAll();
 
-                return PersonMapper.MapPersonListToPersonDto(persons);
+                return persons?.ToPersonDto();
             }
         }
 
@@ -43,7 +43,7 @@ namespace DotNetCore.Application.Services
             {
                 var persons = _unitOfWork.Persons.FindByName(name);
 
-                return PersonMapper.MapPersonListToPersonDto(persons);
+                return persons?.ToPersonDto();
             }
         }
 
@@ -51,7 +51,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Persons.Add(PersonMapper.MapPersonDtoToPerson(person));
+                var result = _unitOfWork.Persons.Add(PersonMapper.ToPerson(person));
                 _unitOfWork.Save();
 
                 return result;
@@ -62,7 +62,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Persons.Update(PersonMapper.MapPersonDtoToPerson(person));
+                var result = _unitOfWork.Persons.Update(person.ToPerson());
                 _unitOfWork.Save();
 
                 return result;
@@ -73,7 +73,7 @@ namespace DotNetCore.Application.Services
         {
             using (_unitOfWork)
             {
-                var result = _unitOfWork.Persons.Remove(PersonMapper.MapPersonDtoToPerson(person));
+                var result = _unitOfWork.Persons.Remove(person.ToPerson());
                 _unitOfWork.Save();
 
                 return result;

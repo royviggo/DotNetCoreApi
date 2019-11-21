@@ -1,12 +1,12 @@
-﻿using DotNetCore.Application.Model;
-using DotNetCore.Domain.Entities;
+﻿using DotNetCore.Application.Models;
+using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Utils
+namespace DotNetCore.Application.Mappers
 {
     public static class PersonMapper
     {
-        public static PersonDTO MapPersonToPersonDto(Person person)
+        public static PersonDTO ToPersonDto(this Person person)
         {
             return new PersonDTO
             {
@@ -24,17 +24,17 @@ namespace DotNetCore.Application.Utils
             };
         }
 
-        public static IEnumerable<PersonDTO> MapPersonListToPersonDto(IEnumerable<Person> persons)
+        public static IEnumerable<PersonDTO> ToPersonDto(this IEnumerable<Person> persons)
         {
             var personDtos = new List<PersonDTO>();
 
             foreach (var person in persons)
-                personDtos.Add(MapPersonToPersonDto(person));
+                personDtos.Add(person.ToPersonDto());
 
             return personDtos;
         }
 
-        public static Person MapPersonDtoToPerson(PersonDTO person)
+        public static Person ToPerson(this PersonDTO person)
         {
             return new Person
             {
