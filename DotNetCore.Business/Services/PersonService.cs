@@ -1,10 +1,10 @@
 ﻿using DotNetCore.Data.Interfaces;
-using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Mappers;
-using DotNetCore.Application.Models;
+using DotNetCore.Business.Interfaces;
+using DotNetCore.Business.Mappers;
+using DotNetCore.Business.Models;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Services
+namespace DotNetCore.Business.Services
 {
     public class PersonService : IPersonService
     {

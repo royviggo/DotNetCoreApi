@@ -1,8 +1,8 @@
-﻿using DotNetCore.Application.Models;
+﻿using DotNetCore.Business.Models;
 using DotNetCore.Data.Entities;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Mappers
+namespace DotNetCore.Business.Mappers
 {
     public static class PlaceMapper
     {

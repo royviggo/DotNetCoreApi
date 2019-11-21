@@ -1,8 +1,8 @@
-﻿using DotNetCore.Application.Models;
+﻿using DotNetCore.Business.Models;
 using GenDateTools;
 using System.Collections.Generic;
 
-namespace DotNetCore.Application.Interfaces
+namespace DotNetCore.Business.Interfaces
 {
     public interface IEventService
     {

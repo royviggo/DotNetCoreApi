@@ -5,11 +5,15 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BE9916F1-1AB4-4BE8-9F80-559AE3E7415C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Application", "DotNetCore.Application\DotNetCore.Application.csproj", "{8A3A71DB-27FF-44E4-916D-F7AF90C3BD28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Business", "DotNetCore.Business\DotNetCore.Business.csproj", "{8A3A71DB-27FF-44E4-916D-F7AF90C3BD28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.Data", "DotNetCore.Data\DotNetCore.Data.csproj", "{9D18B262-0BE6-4981-9131-9E63843AF639}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.WebApi", "DotNetCore.WebApi\DotNetCore.WebApi.csproj", "{14089BFD-1A31-4C3B-8571-8DB55850E477}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9D18B262-0BE6-4981-9131-9E63843AF639} = {9D18B262-0BE6-4981-9131-9E63843AF639}
+		{8A3A71DB-27FF-44E4-916D-F7AF90C3BD28} = {8A3A71DB-27FF-44E4-916D-F7AF90C3BD28}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

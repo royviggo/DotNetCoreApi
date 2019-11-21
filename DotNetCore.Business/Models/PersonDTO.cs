@@ -1,7 +1,7 @@
 ﻿using DotNetCore.Data.Enums;
 using System;
 
-namespace DotNetCore.Application.Models
+namespace DotNetCore.Business.Models
 {
     public class PersonDTO
     {

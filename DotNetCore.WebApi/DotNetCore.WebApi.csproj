@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DotNetCore.Application\DotNetCore.Application.csproj" />
+    <ProjectReference Include="..\DotNetCore.Business\DotNetCore.Business.csproj" />
   </ItemGroup>
 
 </Project>

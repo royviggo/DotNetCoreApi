@@ -1,6 +1,6 @@
-﻿using DotNetCore.Application.Models;
+﻿using DotNetCore.Business.Models;
 using Microsoft.AspNetCore.Mvc;
-using DotNetCore.Application.Interfaces;
+using DotNetCore.Business.Interfaces;
 using System.Collections.Generic;
 using System.Net.Mime;
 

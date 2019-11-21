@@ -1,8 +1,7 @@
-﻿using DotNetCore.Application.Interfaces;
-using DotNetCore.Application.Services;
+﻿using DotNetCore.Business.Interfaces;
+using DotNetCore.Business.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using DotNetCore.Data.Database;
